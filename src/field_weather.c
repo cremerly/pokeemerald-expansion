@@ -105,7 +105,8 @@ void (*const gWeatherPalStateFuncs[])(void) =
 
 // This table specifies which of the color maps should be
 // applied to each of the background and sprite palettes.
-EWRAM_DATA u8 sBasePaletteColorMapTypes[32] =
+EWRAM_DATA u8 ALIGNED(2) sBasePaletteColorMapTypes[32] = {0};
+static const u8 ALIGNED(2) sConstBasePaletteColorMapTypes[32] =
 {
     // background palettes
     COLOR_MAP_DARK_CONTRAST,
@@ -144,6 +145,14 @@ EWRAM_DATA u8 sBasePaletteColorMapTypes[32] =
 };
 
 const u16 ALIGNED(4) gFogPalette[] = INCBIN_U16("graphics/weather/fog.gbapal");
+
+void InitPaletteColorMapTypes(void)
+{
+    int i;
+
+    for (i = 0; i <= 31; i++)
+        sBasePaletteColorMapTypes[i] = sConstBasePaletteColorMapTypes[i];
+}
 
 void StartWeather(void)
 {

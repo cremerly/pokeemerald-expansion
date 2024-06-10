@@ -153,6 +153,7 @@ void UpdatePaletteGammaType(u8 index, u8 gammaType);
 // field_weather_effect.c
 extern const u8 gWeatherFogHorizontalTiles[];
 
+void InitPaletteColorMapTypes(void);
 void StartWeather(void);
 void SetNextWeather(u8 weather);
 void SetCurrentAndNextWeather(u8 weather);
